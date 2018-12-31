@@ -1,4 +1,3 @@
-
 const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
@@ -9,7 +8,7 @@ module.exports = {
   entry: entryPoint,
   output: {
     path: exportPath,
-    filename: 'main.js'
+    filename: './dist/main.js'
   },
   module: {
     rules: [{
@@ -25,8 +24,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: [
-          {
+        use: [{
             loader: "style-loader" // creates style nodes from JS strings
           },
           {
@@ -36,7 +34,8 @@ module.exports = {
             loader: "sass-loader" // compiles Sass to CSS
           }
         ]
-      }
+      },
+      { test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' }
     ]
   },
   plugins: [
